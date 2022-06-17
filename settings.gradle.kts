@@ -1,0 +1,1 @@
+rootProject.name = "flutter_test_file_creator"
