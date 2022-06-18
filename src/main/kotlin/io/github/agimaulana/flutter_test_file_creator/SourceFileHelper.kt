@@ -3,31 +3,36 @@ package io.github.agimaulana.flutter_test_file_creator
 import com.intellij.openapi.actionSystem.AnActionEvent
 import com.intellij.openapi.actionSystem.PlatformDataKeys
 import com.intellij.openapi.project.Project
+import com.intellij.openapi.project.ex.ProjectEx
+import com.intellij.openapi.project.impl.ProjectExImpl
 import com.intellij.openapi.vfs.VirtualFile
+import com.intellij.project.stateStore
 
 class SourceFileHelper private constructor(private val project: Project?, private val virtualFile: VirtualFile?) {
     val contentRootPath: String
     get() {
+        val stateStore = project?.stateStore
+        val projectBasePath = stateStore?.projectBasePath?.toString() ?: ""
         return virtualFile?.path
-            ?.substringAfter(project?.name ?: "")
+            ?.substringAfter(projectBasePath)
             ?.trimStart { it == '/' } ?: ""
     }
 
-    fun splitPathAndFileName(path: String): Pair<String, String> {
+    fun splitPathAndFileName(path: String, fileNameSuffix: String): Pair<String, String> {
         val split = path.split("/")
         val pathWithoutFileName = split.subList(0, split.size - 1).joinToString("/")
-        val testPath = pathWithoutFileName.replace("lib/", "test/")
+        val testPath = pathWithoutFileName.replace("lib", "test")
 
         val fileName = split.last()
         val fileNameWithoutExtension = fileName.substringBeforeLast(".")
         val extension = fileName.substringAfterLast(".")
-        val testFileName = "${fileNameWithoutExtension}_test.$extension"
+        val testFileName = "%s%s.%s".format(fileNameWithoutExtension, fileNameSuffix, extension)
 
         return Pair(testPath, testFileName)
     }
 
     fun createTestFilePath(): String {
-        val (testPath, testFileName) = splitPathAndFileName(contentRootPath)
+        val (testPath, testFileName) = splitPathAndFileName(contentRootPath, "_test")
         return "$testPath/$testFileName"
     }
 
