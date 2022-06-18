@@ -1,24 +1,32 @@
 <component name="ProjectRunConfigurationManager">
-    <configuration default="false" name="Run Plugin" type="GradleRunConfiguration" factoryName="Gradle">
-        <log_file alias="idea.log" path="$PROJECT_DIR$/build/idea-sandbox/system/log/idea.log"/>
-        <ExternalSystemSettings>
-            <option name="executionName"/>
-            <option name="externalProjectPath" value="$PROJECT_DIR$"/>
-            <option name="externalSystemIdString" value="GRADLE"/>
-            <option name="scriptParameters" value=""/>
-            <option name="taskDescriptions">
-                <list/>
-            </option>
-            <option name="taskNames">
-                <list>
-                    <option value="runIde"/>
-                </list>
-            </option>
-            <option name="vmOptions" value=""/>
-        </ExternalSystemSettings>
-        <ExternalSystemDebugServerProcess>true</ExternalSystemDebugServerProcess>
-        <ExternalSystemReattachDebugProcess>true</ExternalSystemReattachDebugProcess>
-        <DebugAllEnabled>false</DebugAllEnabled>
-        <method v="2"/>
-    </configuration>
+  <configuration default="false" name="Run Plugin" type="GradleRunConfiguration" factoryName="Gradle">
+    <log_file alias="idea.log" path="$PROJECT_DIR$/build/idea-sandbox/system/log/idea.log" />
+    <ExternalSystemSettings>
+      <option name="env">
+        <map>
+          <entry key="CERTIFICATE_CHAIN" value="-----BEGIN CERTIFICATE----- MIIDXjCCAkYCCQC0ly1W0E32GDANBgkqhkiG9w0BAQsFADBwMQswCQYDVQQGEwJJ RDEQMA4GA1UECAwHSmFrYXJ0YTEQMA4GA1UEBwwHSmFrYXJ0YTEUMBIGA1UECgwL Q29kZSBDb2xvbnkxJzAlBgkqhkiG9w0BCQEWGGFnaW1hdWxhbmEuZGV4QGdtYWls LmNvbTAgFw0yMjA2MTgxMzAyMTVaGA8yMTIyMDUyNTEzMDIxNVowcDELMAkGA1UE BhMCSUQxEDAOBgNVBAgMB0pha2FydGExEDAOBgNVBAcMB0pha2FydGExFDASBgNV BAoMC0NvZGUgQ29sb255MScwJQYJKoZIhvcNAQkBFhhhZ2ltYXVsYW5hLmRleEBn bWFpbC5jb20wggEiMA0GCSqGSIb3DQEBAQUAA4IBDwAwggEKAoIBAQDREqG4x7vI xLYrqr1g/nT38PiWCziVKmI9UOp3f04mLpWGj4Jp3Zb5w9ww2ZJvDyROiFE3cCQc FdtXrG8aEMs9uEfc1PoClksz19xBF8kctGYvwP0eU5aizFPN+VZn9d01sIfNnFIK aEgf3dS3Cy1AAQb19CrG9P+rEfaymgJoV7++6tR9E3eOijyboT4JOZlY43R+n8aN bH+LxgMn5kTeRCSepZCn6vrn6b1izPB0XK2K2UMwwgkstH7RjPR3xMs04ZR7KWIk KtsDFHuZCBzTAmr+8xcGsPLpCjHKD8J8piwAyUlPV4AbNywjeUABOjJUoaNv0SLs NQXPqbRc/nIxAgMBAAEwDQYJKoZIhvcNAQELBQADggEBAA2kdtdYntPRrn4x2OYO 9fwvaOZuWB3woyKFfnA3PuPZL9ud4ht8z6l8tw/mlitieh4jdF2xK1S8IV+jqfl/ ZWNPbLyXFsttGx9bu4pYKUfvPtw+uFKz73/Th8wjqu7booUzkfm1V3TxnrEg0awk 6jS0OXbDn5tjjqJQ5fnbSRnSK6j3Vk13TOjRxloYw5wpsSozwUHBrJ0sh4JPw2sh 06rcblNy/yD40p8rv5k2kf1EQb76AnfEf/dSgQZNoNEd3vc3KsUB6ruPAksEe7rB VSIJvED03zoSyvkwZrForS1SaZfUYEP+Yk9Rf7dMEpbWyOLGN+vek8127R4ERf1r uVE= -----END CERTIFICATE-----" />
+          <entry key="PRIVATE_KEY" value="-----BEGIN ENCRYPTED PRIVATE KEY----- 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 sasd6NAQAoJWXTXxiDKDKEOdwg== -----END ENCRYPTED PRIVATE KEY-----" />
+          <entry key="PRIVATE_KEY_PASSWORD" value="Agi@FlutterTestCreatorPlugin" />
+          <entry key="PUBLISH_TOKEN" value="perm:YWdpbWF1bGFuYS5kZXg=.OTItNjI1Mw==.6nu0YmkqeIRpEcFVaPSq5ta5YBmDSm" />
+        </map>
+      </option>
+      <option name="executionName" />
+      <option name="externalProjectPath" value="$PROJECT_DIR$" />
+      <option name="externalSystemIdString" value="GRADLE" />
+      <option name="scriptParameters" value="" />
+      <option name="taskDescriptions">
+        <list />
+      </option>
+      <option name="taskNames">
+        <list>
+          <option value="runIde" />
+        </list>
+      </option>
+      <option name="vmOptions" value="" />
+    </ExternalSystemSettings>
+    <ExternalSystemDebugServerProcess>true</ExternalSystemDebugServerProcess>
+    <ExternalSystemReattachDebugProcess>true</ExternalSystemReattachDebugProcess>
+    <DebugAllEnabled>false</DebugAllEnabled>
+    <method v="2" />
+  </configuration>
 </component>
