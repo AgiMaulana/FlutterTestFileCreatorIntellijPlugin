@@ -18,11 +18,14 @@ class TestFileCreatorAction : AnAction() {
         val virtualFile = event.getData(PlatformDataKeys.VIRTUAL_FILE)
         val sourceFileHelper = SourceFileHelper.createFrom(event)
         val isLibFile = sourceFileHelper.contentRootPath.startsWith("lib/")
-        // event.presentation.isEnabled = virtualFile?.extension == "dart" && isLibFile
-        Thread {
-            Thread.sleep(1000)
-            event.presentation.isEnabled = virtualFile?.extension == "dart" && isLibFile
-        }
+        val isShouldEnable = virtualFile?.extension == "dart" && isLibFile
+        event.presentation.isEnabled = isShouldEnable
+
+        println("update - virtualFile: $virtualFile")
+        println("update - contentRootPath: ${sourceFileHelper.contentRootPath}")
+        println("update - isLibFile: $isLibFile")
+        println("update - isShouldEnable: $isShouldEnable")
+        println("update - event.presentation.isEnabled: ${event.presentation.isEnabled}")
     }
 
     override fun actionPerformed(event: AnActionEvent) {
