@@ -7,12 +7,22 @@ import com.intellij.openapi.ui.Messages
 
 class TestFileCreatorAction : AnAction() {
 
+    /**
+     * On Android Studio the update(event) may be called twice with the first event contains
+     * null virtual file but the second call the virtual file isn't null.
+     *
+     * Without suspending the update with Thread.sleep(1000) the presentation may be failed to enable the action.
+     */
     override fun update(event: AnActionEvent) {
         super.update(event)
         val virtualFile = event.getData(PlatformDataKeys.VIRTUAL_FILE)
         val sourceFileHelper = SourceFileHelper.createFrom(event)
         val isLibFile = sourceFileHelper.contentRootPath.startsWith("lib/")
-        event.presentation.isEnabled = virtualFile?.extension == "dart" && isLibFile
+        // event.presentation.isEnabled = virtualFile?.extension == "dart" && isLibFile
+        Thread {
+            Thread.sleep(1000)
+            event.presentation.isEnabled = virtualFile?.extension == "dart" && isLibFile
+        }
     }
 
     override fun actionPerformed(event: AnActionEvent) {
@@ -28,10 +38,10 @@ class TestFileCreatorAction : AnAction() {
         )
         if (confirmedPath != null) {
             val fileCreator = FileCreator(project!!)
-            val (testDir, fileName) = sourceFileHelper.splitPathAndFileName(confirmedPath)
+            val (testDir, fileName) = sourceFileHelper.splitPathAndFileName(confirmedPath, "")
             try {
                 val testFile = fileCreator.createFile(testDir, fileName)
-                TestFileContentUtils.writeContentToFile(testFile);
+                TestFileContentUtils.writeContentToFile(testFile)
                 val fileInteraction = FileInteraction(project)
                 fileInteraction.refreshWithoutFileWatcher(false)
                 fileInteraction.openFile(testFile)
