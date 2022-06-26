@@ -22,7 +22,7 @@
     - src/
       - feature/
         - awesome/
-          - some_widget.dart`
+          - some_widget.dart
     </pre>
 
     then the test file will be created in the `test` directory with this structure<br>
@@ -31,7 +31,7 @@
     - src/
       - feature/
         - awesome/
-          - some_widget_test.dart`
+          - some_widget_test.dart
     </pre>
 
     Don't worry, you still can edit the desired file name and path.
