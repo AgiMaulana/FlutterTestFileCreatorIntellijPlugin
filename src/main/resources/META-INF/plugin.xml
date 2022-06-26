@@ -51,6 +51,8 @@
                 class="io.github.agimaulana.flutter_test_file_creator.TestFileCreatorAction"
                 text="Flutter: Create Test File" description="Create flutter test file">
             <add-to-group group-id="ToolsMenu" anchor="first"/>
+            <add-to-group group-id="ProjectViewPopupMenu" anchor="first"/>
+            <add-to-group group-id="GenerateGroup"  anchor="first"/>
         </action>
     </actions>
 </idea-plugin>
