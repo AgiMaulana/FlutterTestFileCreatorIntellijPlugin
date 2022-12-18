@@ -1,5 +1,6 @@
 name: Publish to Jetbrains Marketplace
 on:
+  workflow_dispatch:
   push:
     branches:
       - master
@@ -19,6 +20,17 @@ jobs:
 
       - name: Build plugin
         run: ./gradlew buildPlugin
+
+#      - name: Download Jetbrains Marketplace zip signer
+#        run: wget https://github.com/JetBrains/marketplace-zip-signer/releases/download/0.1.8/marketplace-zip-signer-cli.jar
+#
+#      - name: Sign plugin
+#        run: java -jar marketplace-zip-signer-cli.jar sign\
+#            -in "unsigned.zip"\
+#            -out "signed.zip"\
+#            -cert-file "/path/to/chain.crt"\
+#            -key-file "/path/to/private.pem"\
+#            -key-pass "PRIVATE_KEY_PASSWORD"
 
       - name: Publish plugin
         env:
