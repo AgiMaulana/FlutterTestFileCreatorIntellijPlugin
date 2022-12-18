@@ -63,14 +63,4 @@ tasks {
         // IDE Development Instance (the "Contents" directory is macOS specific):
         ideDir.set(file("/Applications/Android Studio.app/Contents"))
     }
-
-    signPlugin {
-        certificateChain.set(System.getenv("CERTIFICATE_CHAIN"))
-        privateKey.set(System.getenv("PRIVATE_KEY"))
-        password.set(System.getenv("PRIVATE_KEY_PASSWORD"))
-    }
-
-    publishPlugin {
-        token.set(System.getenv("PUBLISH_TOKEN"))
-    }
 }

@@ -1,5 +1,6 @@
 name: Publish to Jetbrains Marketplace
 on:
+  workflow_dispatch:
   push:
     branches:
       - master
@@ -20,10 +21,20 @@ jobs:
       - name: Build plugin
         run: ./gradlew buildPlugin
 
+      - name: Decode marketplace credentials
+        env:
+          CERTIFICATE_CHAIN_B64: ${{ secrets.CERTIFICATE_CHAIN }}
+          PRIVATE_KEY_B64: ${{ secrets.PRIVATE_KEY }}
+        run:
+          echo CERTIFICATE_CHAIN_B64 > chain.crt.b64
+          base64 -d -i chain.crt.b64 > chain.crt
+          export CERTIFICATE_CHAIN="chain.crt"
+          echo PRIVATE_KEY_B64 > private.pem.b64
+          base64 -d -i private.pem.b64 > private.pem
+          export PRIVATE_KEY="private.pem"
+
       - name: Publish plugin
         env:
-          CERTIFICATE_CHAIN: ${{ secrets.CERTIFICATE_CHAIN }}
-          PRIVATE_KEY: ${{ secrets.PRIVATE_KEY }}
           PRIVATE_KEY_PASSWORD: ${{ secrets.PRIVATE_KEY_PASSWORD }}
           PUBLISH_TOKEN: ${{ secrets.PUBLISH_TOKEN }}
         run: ./gradlew publishPlugin
